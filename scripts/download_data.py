@@ -36,9 +36,9 @@ def download_split_data():
     X_train.insert(loc = len(X_train.columns), column = 'target', value = y_train)
     X_valid.insert(loc = len(X_valid.columns), column = 'target', value = y_valid)
 
-    X_train.to_csv('../data/train.csv')
-    X_valid.to_csv('../data/validation.csv')
-    X_test.to_csv('../data/test.csv')
+    X_train.to_csv('../data/train.csv', index=False)
+    X_valid.to_csv('../data/validation.csv', index=False)
+    X_test.to_csv('../data/test.csv', index=False)
 
     return
 
