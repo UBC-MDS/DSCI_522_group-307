@@ -46,4 +46,4 @@ Histograms will also be generated to aid in evaluating the numerical features an
 
 A final report will be generated after the optimized model has been created. This report will include an answer to the research question, justifications of classifiers and hyperparameter values, any assumptions made throughout model development, limitations of the model, and improvement recommendations. Summary tables and plots will be generated to effectively communicate model characteristics and effectiveness. 
 
-[1] C. Blake and C. Merz. UCI repository of machine learningdatabases, 1998
+[1] Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
