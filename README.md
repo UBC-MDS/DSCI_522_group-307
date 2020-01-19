@@ -39,8 +39,8 @@ _Note: all scripts will be developed in Python and all machine learning analysis
 
 ### __4. EDA Tables & Figures__  
 
-Tables will be generated summarizing the feature properties; this will aid in determining the type of imputer and transformation required during preprocessing.  
-Histograms will also be generated to aid in evaluating the numerical features and the selection of the classifiers to test.
+An [EDA](https://github.com/UBC-MDS/DSCI_522_group-307/blob/master/eda/EDA_Adult_data.ipynb) was generated summarizing the feature properties; this will aid in determining the type of imputer and transformations required during preprocessing.  
+Histograms were also generated to aid in evaluating the numerical features and the selection of the classifiers to test. A summary of observations is also included.
 
 ### __5. Summary__  
 
