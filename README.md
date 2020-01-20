@@ -8,7 +8,7 @@
 
 The __Adult Data Set__ obtained from the University of California Irvine Machine Learning Repository [1] was selected to be used in this UBC MDS DSCI 522 data analysis project.  
 
-The [download_data](https://github.com/UBC-MDS/DSCI_522_group-307/blob/master/scripts/download_data.py) script can be used to download and save the data into training, validation, and testing sets. The downloaded data files can be found in the __[\data](https://github.com/UBC-MDS/DSCI_522_group-307/tree/master/data)__ folder:  
+The [download_data](https://github.com/UBC-MDS/DSCI_522_group-307/blob/master/scripts/download_data.py) script can be used to download and save the data into training, validation, and testing sets. The downloaded data files can be found in the __[/data](https://github.com/UBC-MDS/DSCI_522_group-307/tree/master/data)__ folder:  
 - [training set](https://github.com/UBC-MDS/DSCI_522_group-307/blob/master/data/train.csv)  
 - [validation set](https://github.com/UBC-MDS/DSCI_522_group-307/blob/master/data/validation.csv)  
 - [testing set](https://github.com/UBC-MDS/DSCI_522_group-307/blob/master/data/test.csv)  
