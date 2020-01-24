@@ -18,14 +18,12 @@ from docopt import docopt
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+import feather
 
 opt = docopt(__doc__)
 
 def main(in_file, out_dir, istrain=1):
   
-    #url_data = 'https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data'
-    #url_test = 'https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.test'
-    
     #fetching column names
     url_names = 'https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.names'
     names  = pd.read_table(url_names, header = None)
@@ -61,8 +59,10 @@ def main(in_file, out_dir, istrain=1):
     df.loc[df['capital_gain'] > cap_gain_98, 'capital_gain'] = cap_gain_98
     df.loc[df['capital_loss'] > cap_loss_98, 'capital_loss'] = cap_loss_98
   
-    if istrain == 0:
+    if istrain != 1:
       df.to_csv(out_dir+'/clean_test_data.csv', index=False)
+      feather.write_dataframe(df, out_dir+'/clean_test_data.feather')
+      
     else:
       X = df.drop('target', axis = 1)
       y = df['target']
@@ -72,7 +72,10 @@ def main(in_file, out_dir, istrain=1):
       
       X_train.to_csv(out_dir+'/clean_train_data.csv', index=False)
       X_valid.to_csv(out_dir+'/clean_validation_data.csv', index=False)
-
+      
+      feather.write_dataframe(X_train, out_dir+'/clean_train_data.feather')
+      feather.write_dataframe(X_valid, out_dir+'/clean_validation_data.feather')
+      
     return
 
 if __name__ == "__main__":

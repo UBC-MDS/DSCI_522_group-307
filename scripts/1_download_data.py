@@ -22,6 +22,9 @@ opt = docopt(__doc__)
 
 def main(url, out_path, skiprows=None, header='infer'):
     
+    #url_data = 'https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data'
+    #url_test = 'https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.test'
+ 
     try: 
       request = requests.get(url)
       request.status_code == 200
@@ -29,8 +32,12 @@ def main(url, out_path, skiprows=None, header='infer'):
       print("Website at the provided url does not exist.")
       print(req)
     
-    df = pd.read_csv(url, skiprows = skiprows, header = header)
-    
+    if skiprows is None:
+      df = pd.read_csv(url, skiprows = skiprows, header = header)
+    else:
+      skiprows = int(skiprows)
+      df = pd.read_csv(url, skiprows = skiprows, header = header)
+
     df.to_csv(out_path, index=False)
 
 def test_fun():
