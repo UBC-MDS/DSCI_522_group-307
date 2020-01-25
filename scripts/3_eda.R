@@ -8,12 +8,11 @@ from the Adult dataset from the UCI Machine Learning Repository
 (https://archive.ics.uci.edu/ml/datasets/Adult).
 The tables and figures are saved as .csv and .png files, respectively.
 
-Usage: scripts/3_eda.R --train=<train> --out_dir=<out_dir> --out_dir_plt=<out_dir_plt>
+Usage: scripts/3_eda.R --train=<train> --out_dir=<out_dir>
 
 Options:  
 --train=<train>             Path to cleaned training data (as feather file)
---out_dir=<out_dir>         Path to directory where tables should be saved
---out_dir_plt=<out_dir_plt> Path to directory where plot should be saved
+--out_dir=<out_dir>         Path to directory where tables and figures should be saved
 " -> doc
 
 library(feather)
@@ -26,13 +25,13 @@ theme_set(theme_minimal())
 
 opt <- docopt(doc)
 
-main <- function(train, out_dir, out_dir_plt) {
+main <- function(train, out_dir) {
   
   # LOAD DATASET
   df <- read_feather(train)
   
-  cat_feat <- c("workclass", "education", "marital_status", "occupation", "relationship", "race", "sex", "native_country")
-  num_feat <- c("age", "education_num", "capital_gain", "capital_loss", "hours_per_week")
+  cat_feat <- c("workclass", "marital_status", "occupation", "relationship", "race", "sex", "native_country")
+  num_feat <- c("age", "education_num", "hours_per_week")
   
   # CREATE TABLE TO SUMMARIZE NUMERICAL FEATURES
   num_df <- df %>%
@@ -88,10 +87,10 @@ main <- function(train, out_dir, out_dir_plt) {
           axis.title.y = element_blank())
   
   # WRITE PLOT
-  ggsave(paste0(out_dir_plt, "/dist_num_feat.png"),
+  ggsave(paste0(out_dir, "/dist_num_feat.png"),
          plot = num_plot,
-         width = 6,
-         height = 9)
+         width = 7,
+         height = 5)
 }
 
-main(opt[["--train"]], opt[["--out_dir"]], opt[["--out_dir_plt"]])
+main(opt[["--train"]], opt[["--out_dir"]])
