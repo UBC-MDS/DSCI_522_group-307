@@ -10,7 +10,7 @@ Usage: scripts/2_wrangle_data.py --in_file=<input_file> --out_dir=<out_dir> [--i
 Options:
 --in_file=<in_file>    Input train file on which wrangling will be done.
 --out_dir=<out_dir>    Output directory(folder name) relative to root where to write the clean output in .csv format
---istrain=<istrain>    Optional argument, indicator whether it is a training set which will have 2 output train and validation or a test set which will have 1 clean output only
+[--istrain=<istrain>]    Optional argument, indicator whether it is a training set which will have 2 output train and validation or a test set which will have 1 clean output only
 
 """
     
@@ -23,7 +23,7 @@ import feather
 opt = docopt(__doc__)
 
 def main(in_file, out_dir, istrain=1):
-  
+    
     #fetching column names
     url_names = 'https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.names'
     names  = pd.read_table(url_names, header = None)
@@ -58,12 +58,10 @@ def main(in_file, out_dir, istrain=1):
     #removing outliers from capital_gain and capital_loss by capping method
     df.loc[df['capital_gain'] > cap_gain_98, 'capital_gain'] = cap_gain_98
     df.loc[df['capital_loss'] > cap_loss_98, 'capital_loss'] = cap_loss_98
-  
-    if istrain != 1:
-      df.to_csv(out_dir+'/clean_test_data.csv', index=False)
-      feather.write_dataframe(df, out_dir+'/clean_test_data.feather')
+    
+   
+    if (istrain is None) or (istrain == "1"):
       
-    else:
       X = df.drop('target', axis = 1)
       y = df['target']
       X_train, X_valid, y_train, y_valid = train_test_split(X, y, train_size = 0.8, random_state = 2020)
@@ -76,6 +74,11 @@ def main(in_file, out_dir, istrain=1):
       feather.write_dataframe(X_train, out_dir+'/clean_train_data.feather')
       feather.write_dataframe(X_valid, out_dir+'/clean_validation_data.feather')
       
+    else:
+      
+      df.to_csv(out_dir+'/clean_test_data.csv', index=False)
+      feather.write_dataframe(df, out_dir+'/clean_test_data.feather')
+            
     return
 
 if __name__ == "__main__":

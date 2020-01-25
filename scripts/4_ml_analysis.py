@@ -1,7 +1,7 @@
 """
 This script performs the machine learning portion of the data analysis. 
 
-Usage: 4_ml_analysis.py --train=<train> --valid=<valid> --test=<test> --outputdir=<outputdir>
+Usage: scripts/4_ml_analysis.py --train=<train> --valid=<valid> --test=<test> --outputdir=<outputdir>
 
 Options:
 --train=<train>             a path pointing to the train data
