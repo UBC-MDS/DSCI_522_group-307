@@ -1,0 +1,11 @@
+Feature,Importance
+age,0.2
+education_num,0.18
+hours_per_week,0.1
+relationship_Wife,0.04
+occupation_Tech-support,0.02
+occupation_Handlers-cleaners,0.02
+occupation_Other-service,0.02
+occupation_Priv-house-serv,0.02
+occupation_Prof-specialty,0.02
+occupation_Protective-serv,0.02

@@ -1,0 +1,5 @@
+Classifier,Validation Score,Mean Test Score,Mean Fit Time,Mean Score Time,Optimum Hyperparameters,classifier_temp
+Support Vector Machines,0.8256972111553785,0.8324206310913829,8.076988649368285,0.582364273071289,"{'classifier__C': 1, 'classifier__gamma': 'auto', 'classifier__kernel': 'rbf'}",SVM
+Ada Boost,0.8256972111553785,0.833002095366758,1.9160154342651368,0.056904840469360354,{'classifier__learning_rate': 1},adaboost
+Logistic Regression,0.8247011952191236,0.8319226368536412,0.4059601306915283,0.009440422058105469,{'classifier__solver': 'saga'},logistic_regression
+Random Forest,0.8243691899070386,0.8344959402269062,2.7874294996261595,0.062028145790100096,{'classifier__max_depth': 10},random_forest
