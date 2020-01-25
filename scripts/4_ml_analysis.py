@@ -1,4 +1,5 @@
-"""This script does ...
+"""
+This script performs the machine learning portion of the data analysis. 
 
 Usage: 4_ml_analysis.py --train=<train> --valid=<valid> --test=<test> --outputdir=<outputdir>
 
@@ -20,7 +21,6 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 
@@ -39,11 +39,6 @@ def main(train, valid, test, odir):
     if odir.endswith('.csv') == True:
         print('do not provide a filename.csv in the output directory')
         return
-
-
-    #ASSIGN USER INPUT TO VARIABLES
-    #--------------------------------------------
-
 
 
     #IMPORT & SPLIT DATA
@@ -70,36 +65,27 @@ def main(train, valid, test, odir):
     preprocessor = ColumnTransformer(
                         transformers = [
                             ('num', StandardScaler(), numerical),
-                            ('cat', OneHotEncoder(), categorical)
-                        ])
+                            ('cat', OneHotEncoder(), categorical)])
 
     #CLASSIFIER & HYPERPARAMETER SELECTION
     #--------------------------------------------
-    #logistic regression: interpretable feature importance (weights)
-    #rbf svm: interpretable feature importance (support_vectors_ or support_)
-    #to see how a non-parametric classifier performs
-    #random forest: to see how a bagged classifier performs
-
 
     model_param = {                   
-                'logistic_regression': [LogisticRegression(), 
+                'logistic_regression':  [LogisticRegression(), 
                                         {'classifier__solver': ['lbfgs', 'saga']}, 
                                         'Logistic Regression'],      
-                'SVM' : [SVC(), 
-                            {'classifier__kernel': ['rbf', 'poly'],
-                            'classifier__C': [0.1, 1, 10, 100],
-                            'classifier__gamma':['scale', 'auto']},
-                            'Support Vector Machines'],                                                    
-                'random_forest' : [RandomForestClassifier(), 
-                                    {'classifier__max_depth': [1, 3, 6, 10, 15, None]},
-                                    'Random Forest'],
-                    'adaboost': [AdaBoostClassifier(), 
-                                {'classifier__learning_rate': [1, 5, 10]},
-                                'Ada Boost']
+                'SVM' :                 [SVC(), 
+                                        {'classifier__kernel': ['rbf', 'poly'],
+                                        'classifier__C': [0.1, 1, 10, 100],
+                                        'classifier__gamma':['scale', 'auto']},
+                                        'Support Vector Machines'],                                                    
+                'random_forest' :       [RandomForestClassifier(), 
+                                        {'classifier__max_depth': [1, 3, 6, 10, 15, None]},
+                                        'Random Forest'],
+                'adaboost':            [AdaBoostClassifier(), 
+                                        {'classifier__learning_rate': [1, 5, 10]},
+                                        'Ada Boost']
                 }
-
-    #FEATURE SELECTION (OPTIONAL - TIME PERMITTING)
-    #--------------------------------------------
 
 
     #HYPERPARAMETER OPTIMIZATION
@@ -133,7 +119,6 @@ def main(train, valid, test, odir):
     gridsearch_summary = gridsearch_summary.sort_values(by = ['Validation Score'], ascending = False).reset_index(drop = True)  #OUTPUT
 
 
-
     #Ada Boost
     #--------------------------------------------
     ada_pipe = Pipeline(steps = 
@@ -164,13 +149,12 @@ def main(train, valid, test, odir):
     test_score_lr = grid_search_lr.score(X_test, y_test)
 
 
-    #may need this to call below
     preprocessor.fit_transform(X_trainvalid)
     transformed_feature_names = (numerical +list(preprocessor.named_transformers_['cat'].get_feature_names(categorical)))
 
     feature_importance_lr = grid_search_lr.best_estimator_[1].coef_
     lr_importance = pd.DataFrame({'Feature': np.asarray(transformed_feature_names),
-                                'Weight': feature_importance_lr.T.squeeze()})
+                                'Weight': [round(i, 2) for i in feature_importance_lr.T.squeeze()]})
 
     lr_positive_features = lr_importance.sort_values(by = ['Weight'], ascending = False).reset_index(drop = True).head(10) #OUTPUT
     lr_negative_features = lr_importance.sort_values(by = ['Weight'], ascending = True).reset_index(drop = True).head(10) #OUTPUT
@@ -190,8 +174,6 @@ def main(train, valid, test, odir):
     lr_negative_features.to_csv(odir+'/neg_features.csv', index = False)
     ada_significant_features.to_csv(odir+'/sig_features.csv', index = False)
     scores
-
-
 
     return
 
