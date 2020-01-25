@@ -11,11 +11,12 @@ The tables and figures are saved as .csv and .png files, respectively.
 Usage: scripts/3_eda.R --train=<train> --out_dir=<out_dir> --out_dir_plt=<out_dir_plt>
 
 Options:  
---train=<train>             Path to cleaned training data
+--train=<train>             Path to cleaned training data (as feather file)
 --out_dir=<out_dir>         Path to directory where tables should be saved
 --out_dir_plt=<out_dir_plt> Path to directory where plot should be saved
 " -> doc
 
+library(feather)
 library(tidyverse)
 library(plyr)
 library(docopt)
@@ -28,7 +29,7 @@ opt <- docopt(doc)
 main <- function(train, out_dir, out_dir_plt) {
   
   # LOAD DATASET
-  df <- read_csv(train)
+  df <- read_feather(train)
   
   cat_feat <- c("workclass", "education", "marital_status", "occupation", "relationship", "race", "sex", "native_country")
   num_feat <- c("age", "education_num", "capital_gain", "capital_loss", "hours_per_week")
@@ -46,13 +47,13 @@ main <- function(train, out_dir, out_dir_plt) {
   
   num_table <- data.frame(num_mean, num_min, num_max) %>%
     dplyr::rename(mean = num_mean, 
-           min = num_min, 
-           max = num_max) %>%
+                  min = num_min, 
+                  max = num_max) %>%
     mutate(feature = num_feat) %>%
     select(feature, mean, min, max)
   
   # WRITE TABLE
-  write_csv(num_table, paste0(out_dir, "/num_feat_summary.csv")) # CHANGE
+  write_csv(num_table, paste0(out_dir, "/num_feat_summary.csv"))
   
   # CREATE TABLE TO SUMMARIZE CATEGORICAL FEATURES
   cat_df <- df %>%
@@ -91,7 +92,6 @@ main <- function(train, out_dir, out_dir_plt) {
          plot = num_plot,
          width = 6,
          height = 9)
-
 }
 
 main(opt[["--train"]], opt[["--out_dir"]], opt[["--out_dir_plt"]])
