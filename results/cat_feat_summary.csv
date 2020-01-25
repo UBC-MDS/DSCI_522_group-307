@@ -1,8 +1,8 @@
 feature,n_uniq_feat,uniq_feat
-workclass,7,"Private, Self-emp-not-inc, Federal-gov, Self-emp-inc, Local-gov, State-gov, Without-pay"
-marital_status,7,"Married-civ-spouse, Never-married, Married-spouse-absent, Divorced, Separated, Widowed, Married-AF-spouse"
-occupation,14,"Transport-moving, Craft-repair, Sales, Machine-op-inspct, Farming-fishing, Exec-managerial, Other-service, Handlers-cleaners, Tech-support, Prof-specialty, Adm-clerical, Priv-house-serv, Protective-serv, Armed-Forces"
-relationship,6,"Husband, Not-in-family, Own-child, Other-relative, Unmarried, Wife"
-race,5,"White, Black, Amer-Indian-Eskimo, Asian-Pac-Islander, Other"
+workclass,7,"Private, Self-emp-not-inc, Federal-gov, State-gov, Local-gov, Self-emp-inc, Without-pay"
+marital_status,7,"Separated, Married-civ-spouse, Never-married, Divorced, Widowed, Married-AF-spouse, Married-spouse-absent"
+occupation,14,"Craft-repair, Adm-clerical, Handlers-cleaners, Prof-specialty, Exec-managerial, Sales, Transport-moving, Other-service, Machine-op-inspct, Farming-fishing, Protective-serv, Tech-support, Armed-Forces, Priv-house-serv"
+relationship,6,"Not-in-family, Wife, Own-child, Husband, Unmarried, Other-relative"
+race,5,"Black, White, Other, Asian-Pac-Islander, Amer-Indian-Eskimo"
 sex,2,"Male, Female"
 native_country,2,"United-States, Non-US"
