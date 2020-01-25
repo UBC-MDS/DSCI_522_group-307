@@ -173,7 +173,7 @@ def main(train, valid, test, odir):
     lr_positive_features.to_csv(odir+'/pos_features.csv', index = False)
     lr_negative_features.to_csv(odir+'/neg_features.csv', index = False)
     ada_significant_features.to_csv(odir+'/sig_features.csv', index = False)
-    scores
+    scores.to_csv(odir+'/final_scores.csv', index = False)
 
     return
 
