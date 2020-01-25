@@ -1,5 +1,5 @@
 Classifier,Validation Score,Mean Test Score,Mean Fit Time,Mean Score Time,Optimum Hyperparameters,classifier_temp
-Support Vector Machines,0.8256972111553785,0.8324206310913829,8.51978521347046,0.6018396377563476,"{'classifier__C': 1, 'classifier__gamma': 'auto', 'classifier__kernel': 'rbf'}",SVM
-Ada Boost,0.8256972111553785,0.833002095366758,1.8093552112579345,0.05364892482757568,{'classifier__learning_rate': 1},adaboost
-Random Forest,0.8250332005312085,0.8343300340497098,2.6274968862533568,0.056106734275817874,{'classifier__max_depth': 10},random_forest
-Logistic Regression,0.8247011952191236,0.8319226368536412,0.42090721130371095,0.009693527221679687,{'classifier__solver': 'saga'},logistic_regression
+Random Forest,0.8392176363334991,0.8341831043703983,12.96009283065796,0.11101632118225098,{'classifier__max_depth': 15},random_forest
+Ada Boost,0.8349080059671805,0.8338928887816752,3.687102961540222,0.07945718765258789,{'classifier__learning_rate': 1},adaboost
+Support Vector Machines,0.8335819658544671,0.8341002715391135,36.442058610916135,2.247916507720947,"{'classifier__C': 1, 'classifier__gamma': 'scale', 'classifier__kernel': 'rbf'}",SVM
+Logistic Regression,0.8286093154317918,0.8319036809322637,1.2553812980651855,0.018635034561157227,{'classifier__solver': 'saga'},logistic_regression
