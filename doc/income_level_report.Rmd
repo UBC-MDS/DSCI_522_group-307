@@ -1,0 +1,32 @@
+---
+title: "Income level predictor"
+author: "Evhen Dytyniak and Reiko Okamoto"
+date: "2020/01/24"
+always_allow_html: true
+output: 
+  html_document:
+    toc: true
+bibliography: income_level_predictor.bib
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+```
+
+```{r predictor-distributions, echo=FALSE}
+knitr::include_graphics("../results/dist_num_feat.png")
+```
+
+```{r predictor-distributions2, echo=FALSE, message=FALSE}
+df <- read_csv("../results/num_feat_summary.csv")
+knitr::kable(df) %>%
+  kableExtra::kable_styling(c("hover", "condensed"))
+```
+
+```{r predictor-distributions3, echo=FALSE, message=FALSE}
+df <- read_csv("../results/cat_feat_summary.csv")
+knitr::kable(df) %>%
+  kableExtra::kable_styling(bootstrap_options = c("hover", "condensed"))
+```

@@ -1,6 +1,5 @@
 feature,n_uniq_feat,uniq_feat
 workclass,7,"Private, Self-emp-not-inc, Federal-gov, Self-emp-inc, Local-gov, State-gov, Without-pay"
-education,16,"HS-grad, Some-college, Bachelors, 10th, Assoc-voc, 11th, 5th-6th, 7th-8th, Masters, Assoc-acdm, Doctorate, Preschool, 12th, Prof-school, 1st-4th, 9th"
 marital_status,7,"Married-civ-spouse, Never-married, Married-spouse-absent, Divorced, Separated, Widowed, Married-AF-spouse"
 occupation,14,"Transport-moving, Craft-repair, Sales, Machine-op-inspct, Farming-fishing, Exec-managerial, Other-service, Handlers-cleaners, Tech-support, Prof-specialty, Adm-clerical, Priv-house-serv, Protective-serv, Armed-Forces"
 relationship,6,"Husband, Not-in-family, Own-child, Other-relative, Unmarried, Wife"
