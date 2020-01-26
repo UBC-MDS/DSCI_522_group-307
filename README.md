@@ -1,10 +1,14 @@
 # Income Level Predictor
 A data analysis project for DSCI 522 Data Science Workflows
 
-Authors: Saurav Chowdhury, Evhen Dytyniak, and Reiko Okamoto </br>
+Authors: <br>Saurav Chowdhury, Evhen Dytyniak, and Reiko Okamoto </br>
 Date: 2020-01-24
 
 ## About
+
+In this project, we build a classification model to predict the income levels of individuals based on their demographic and other socio-economic information.
+
+The data that was used in this project was the created by Ronny Kohavi and Barry Becker, Data Mining and Visualization division at Silicon Graphics. This data is extracted from 1994 US Census. It was sourced from the UCI Machine Learning Repository (Dua and Graff 2017) and can be found [here](https://archive.ics.uci.edu/ml/datasets/adult). Each row in the data represents the attributes of an individual like - age, education level, race, working hours, etc. The target variable is whether his/her income is above or below $$50K. There are other less important features not taken into consideration are - capital_gain, capital_loss, fnlwgt. 
 
 ## Report
 The report can be found [here]().
@@ -29,7 +33,7 @@ Python scripts/2_wrangle_data.py --in_file="data/adult_test_data.csv" --out_dir=
 Rscript scripts/3_eda.R --train=clean_train_data.feather --out_dir=data --out_dir_plt=imgs
 
 # Run ML analysis
-Python scripts/4_ml_analysis.py --train=<train> --valid=<valid> --test=<test> --outputdir="results"
+Python scripts/4_ml_analysis.py --train="data/clean_train_data.feather" --valid="data/clean_validation_data.feather" --test="clean_test_data.feather" --outputdir="results"
 
 # Render final report
 ```
@@ -51,4 +55,11 @@ Python scripts/4_ml_analysis.py --train=<train> --valid=<valid> --test=<test> --
     - ggridges == 0.5.2
     - ggthemes == 4.2.0
 
+
+### License
+
+The Income Level Predictor materials are licensed under the MIT License - Copyright (c) 2020 Master of Data Science at the University of British Columbia. 
+
 ## References
+
+Dua, D. and Graff, C. (2019). UCI Machine Learning Repository . Irvine, CA: University of California, School of Information and Computer Science. [http://archive.ics.uci.edu/ml]
