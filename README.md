@@ -36,7 +36,7 @@ Rscript scripts/3_eda.R --train=clean_train_data.feather --out_dir=results
 Python scripts/4_ml_analysis.py --train="data/clean_train_data.feather" --valid="data/clean_validation_data.feather" --test="clean_test_data.feather" --outputdir="results"
 
 # Render final report
-Rscript -e "rmarkdown::render('doc/breast_cancer_predict_report.Rmd', output_format = 'github_document')"
+Rscript -e "rmarkdown::render('doc/income_level_report.Rmd', output_format = 'github_document')"
 
 ```
 
