@@ -13,6 +13,20 @@ Evhen Dytyniak and Reiko Okamoto
 
 # Summary
 
+This analysis attempted determine the most important features when
+predicting a yearly salary of more than 50,000 USD. A logistic
+regression model and AdaBoost model were trained in an effort to extract
+feature importance. The models did not perform exceedingly well, with
+scores in the low 80s, but performed similarly to random forest and
+support vector machine (SVM) models. The logistic regression model’s
+most important features in predicting a yearly salary of greater than
+50,000 USD were `marital_status_Married-AF-spouse` and
+`marital_status_Married-civ-spouse` while the most important features in
+predicting a yearly salary of less than 50,000 USD were
+`occupation-private-house-serv` and `workclass-without-pay`. The
+Adaboost model identified `education-num` and `age` as the most
+important features in classification.
+
 # Introduction
 
 Being able to understand what demographic characteristics best predict
