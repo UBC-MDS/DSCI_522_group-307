@@ -30,7 +30,7 @@ Python scripts/2_wrangle_data.py --in_file="data/adult_train_data.csv" --out_dir
 Python scripts/2_wrangle_data.py --in_file="data/adult_test_data.csv" --out_dir="data" --istrain=0
 
 # Create EDA tables and figures
-Rscript scripts/3_eda.R --train=clean_train_data.feather --out_dir=data 
+Rscript scripts/3_eda.R --train=clean_train_data.feather --out_dir=results 
 
 # Run ML analysis
 Python scripts/4_ml_analysis.py --train="data/clean_train_data.feather" --valid="data/clean_validation_data.feather" --test="clean_test_data.feather" --outputdir="results"
