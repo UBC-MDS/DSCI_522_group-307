@@ -13,7 +13,7 @@ Evhen Dytyniak and Reiko Okamoto
 
 # Summary
 
-This analysis attempted determine the most important features when
+This analysis attempted to determine the most important features when
 predicting a yearly salary of more than 50,000 USD. A logistic
 regression model and AdaBoost model were trained in an effort to extract
 feature importance. The models did not perform exceedingly well, with
@@ -32,7 +32,7 @@ important features in classification.
 Being able to understand what demographic characteristics best predict
 income level can aid in guiding transformative policy decisions and
 drive societal change. Recent reports indicate that while the gender
-wage gap is slowly shrinking (CBC 2017), level of educational attainment
+wage gap is slowly shrinking (CBC 2017), level of education attained
 continues to be an important metric when predicting salary (CBC 2016).
 If these reports are accurate, one would expect education, but not
 gender, to be a good predictor of income level. However, it would be
@@ -117,20 +117,20 @@ and ggthemes (Arnold 2019).
 To gain familiarity with the features at hand, exploratory data analysis
 was performed using the training data. With respect to the categorical
 feature `marital-status`, the proportion of those who were married was
-higher in the high-income class than the low-income class.
-Unsurprisingly, `Exec-managerial` was the most frequently occurring
-occupation followed by `Prof-speciality` in the high-income class. While
-`Adm-clerical`, `Other-service`, and `Craft-repair` were three of the
-most frequently occurring professions in the low-income class, no single
-occupation domiinated. To get a better understanding of the numerical
-features in the dataset, their distributions were compared across income
-levels (orange: `50K`, blue: `<= 50K`). With respect to age, the centers
-of the distributions were not aligned, suggesting that age might be a
-good predictor. With regard to education, the largest peak is located
-further to the right (i.e. more years spent in education) in the
-high-income class. Interestingly, across both income groups, a 40-hour
-workweek appeared to be the standard. However, it is worth noting that
-there is a second peak around 50 hours per week among the high earners.
+higher in the high-income class than in the low-income class.
+`Exec-managerial` was the most frequently occurring occupation followed
+by `Prof-speciality` in the high-income class. While `Adm-clerical`,
+`Other-service`, and `Craft-repair` were three of the most frequently
+occurring professions in the low-income class, no single occupation
+dominated. To get a better understanding of the numerical features in
+the dataset, their distributions were compared across income levels
+(orange: `50K`, blue: `<= 50K`). With respect to age, the centers of the
+distributions were not aligned, suggesting that age might be a good
+predictor. With regard to education, the largest peak is located further
+to the right (i.e. more years spent in education) in the high-income
+class. Interestingly, across both income groups, a 40-hour workweek
+appeared to be the standard. However, it is worth noting that there is a
+second peak around 50 hours per week among the high earners.
 
 <div class="figure">
 
@@ -352,8 +352,8 @@ important feature in classifying an income of `>50K` is a
 predictive of a high salary including `education` and `occupation` of
 `Exec-managerial` were both in the top five. The most important feature
 in classifying a salary of `<=50K` is `occupation-priv-house-serv`
-followed closely by `workclass-without-pay`. An `occupation` of
-`Other-service` and `Farming-fishing` in addition to `sex-Female` were
+followed closely by `workclass_Without-pay`. `occupation` of
+`Other-service` and `Farming-fishing` in addition to `sex_Female` were
 also strong predictors of a lower salary.
 
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -748,11 +748,11 @@ marital\_status\_Married-spouse-absent
 
 In addition, the top features as determined by the Adaboost model can be
 found below. The AdaBoost model determined that the most significant
-feature in predicting salary classification is `education-num` followed
-closely by `age`. These two features taken together account for a large
-proportion of the model’s predictive mechanism. Note that both
-`education-num` and `age` appear in the top ten most important positive
-features (target - `>50K`) determined by the logistic regression model.
+feature in predicting salary is `education-num` followed closely by
+`age`. These two features taken together account for a large proportion
+of the model’s predictive mechanism. Note that both `education-num` and
+`age` appear in the top ten most important positive features (target =
+`>50K`) determined by the logistic regression model.
 
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 
