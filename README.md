@@ -6,12 +6,12 @@ Date: 2020-01-24
 
 ## About
 
-In this project, we build a classification model to predict the income levels of individuals based on their demographic and other socio-economic information.
+This analysis attempted determine the most important features when predicting a yearly salary of more than 50,000 USD. A logistic regression model and AdaBoost model were trained in an effort to extract feature importance. The models did not perform exceedingly well, with scores in the low 80s, but performed similarly to random forest and support vector machine (SVM) models. The logistic regression model’s most important features in predicting a yearly salary of greater than 50,000 USD were `marital_status_Married-AF-spouse` and `marital_status_Married-civ-spouse` while the most important features in predicting a yearly salary of less than 50,000 USD were `occupation-private-house-serv` and `workclass-without-pay`. The Adaboost model identified `education-num` and `age` as the most important features in classification.
 
-The data that was used in this project was the created by Ronny Kohavi and Barry Becker, Data Mining and Visualization division at Silicon Graphics. This data is extracted from 1994 US Census. It was sourced from the UCI Machine Learning Repository (Dua and Graff 2017) and can be found [here](https://archive.ics.uci.edu/ml/datasets/adult). Each row in the data represents the attributes of an individual like - age, education level, race, working hours, etc. The target variable is whether his/her income is above or below $$50K. There are other less important features not taken into consideration are - capital_gain, capital_loss, fnlwgt. 
+The data used in this project was created by Ronny Kohavi and Barry Becker, Data Mining and Visualization division at Silicon Graphics. This data was extracted from 1994 US Census Data. It was sourced from the UCI Machine Learning Repository (Dua and Graff 2017) and can be found [here](https://archive.ics.uci.edu/ml/datasets/adult). Each row in the data represents the attributes of an individual such as: age, education level, race, working hours, etc. The target variable is whether one's income is above or below 50K.  
 
 ## Report
-The report can be found [here]().
+The report can be found [here](https://github.com/UBC-MDS/DSCI_522_group-307/blob/master/doc/income_level_report.md).
 
 ## Usage
 To replicate this analysis, clone this repository, install the dependencies, and run the following commands at the command line from the root directory. 
@@ -36,6 +36,8 @@ Rscript scripts/3_eda.R --train=clean_train_data.feather --out_dir=data --out_di
 Python scripts/4_ml_analysis.py --train="data/clean_train_data.feather" --valid="data/clean_validation_data.feather" --test="clean_test_data.feather" --outputdir="results"
 
 # Render final report
+Rscript -e "rmarkdown::render('doc/breast_cancer_predict_report.Rmd', output_format = 'github_document')"
+
 ```
 
 ## Dependencies
