@@ -1,15 +1,12 @@
-Income level predictor
+Income Level Predictor
 ================
-Evhen Dytyniak and Reiko Okamoto
-2020/01/24
+Reiko Okamoto and Evhen Dytyniak
+2020/01/31
 
-  - [Summary](#summary)
-  - [Introduction](#introduction)
-  - [Method](#method)
-      - [Data](#data)
-      - [Analysis](#analysis)
-  - [Results & Discussion](#results-discussion)
-  - [Bibliography](#bibliography)
+<style>
+body {
+text-align: justify}
+</style>
 
 # Summary
 
@@ -130,7 +127,10 @@ predictor. With regard to education, the largest peak is located further
 to the right (i.e. more years spent in education) in the high-income
 class. Interestingly, across both income groups, a 40-hour workweek
 appeared to be the standard. However, it is worth noting that there is a
-second peak around 50 hours per week among the high earners.
+second peak around 50 hours per week among the high
+earners.
+
+</br>
 
 <div class="figure">
 
@@ -145,20 +145,22 @@ high and low income levels.
 
 </div>
 
-The validation scores from the four models were all similar to one
+</br> The validation scores from the four models were all similar to one
 another (within 0.1% difference). These values demonstrated the
 robustness of the linear regression and AdaBoost models. Moreover, the
 fit and predict times of the logistic regression classifier were much
 faster than those of other models. Once the optimal hyperparameters for
 the logistic regression and Adaboost models were chosen to be `solver =
 "saga"` and `learning_rate = 1`, respectively, the two optimized models
-were trained on the combined training and validation sets.
+were trained on the combined training and validation
+sets.
 
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 
 <caption>
 
-Table 1. Summary of hyperparameter optimization.
+Table 1. Summary of hyperparameter
+optimization.
 
 </caption>
 
@@ -166,31 +168,34 @@ Table 1. Summary of hyperparameter optimization.
 
 <tr>
 
-<th style="text-align:left;">
+<th style="text-align:left;color: white !important;background-color: #696969 !important;text-align: center;">
 
 Classifier
 
 </th>
 
-<th style="text-align:right;">
+<th style="text-align:right;color: white !important;background-color: #696969 !important;text-align: center;">
 
-Validation Score
-
-</th>
-
-<th style="text-align:right;">
-
-Mean Predict Time
+Validation
+Score
 
 </th>
 
-<th style="text-align:right;">
+<th style="text-align:right;color: white !important;background-color: #696969 !important;text-align: center;">
 
-Mean Score Time
+Mean Predict
+Time
 
 </th>
 
-<th style="text-align:left;">
+<th style="text-align:right;color: white !important;background-color: #696969 !important;text-align: center;">
+
+Mean Score
+Time
+
+</th>
+
+<th style="text-align:left;color: white !important;background-color: #696969 !important;text-align: center;">
 
 Optimum Hyperparameters
 
@@ -343,20 +348,24 @@ Logistic Regression
 
 </table>
 
-The top ten features that contribute to a positive or negative
+</br> The top ten features that contribute to a positive or negative
 classification, as determined by the logistic regression model are
 listed below. The linear regression model suggests that the most
-important feature in classifying an income of `>50K` is a
-`Marital-status` of `Married-af-spouse` followed closely by
-`Married-civ-spouse`. Features that one would objectively expect to be
+important features in classifying an income of `>50K` are
+marital\_status\_Married-AF-spouse, marital\_status\_Married-civ-spouse,
+and relationship\_Wife. Features that one would objectively expect to be
 predictive of a high salary including `education` and `occupation` of
-`Exec-managerial` were both in the top five. The most important feature
-in classifying a salary of `<=50K` is `occupation-priv-house-serv`
-followed closely by `workclass_Without-pay`. `occupation` of
-`Other-service` and `Farming-fishing` in addition to `sex_Female` were
-also strong predictors of a lower salary.
+`Exec-managerial` were both in the top five. The most important features
+in classifying a salary of `<=50K` are
+marital\_status\_Married-AF-spouse, marital\_status\_Married-civ-spouse
+followed closely by relationship\_Wife. `occupation` of `Other-service`
+and `Farming-fishing` in addition to `sex_Female` were also strong
+predictors of a lower
+salary.
 
-<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+</br>
+
+<table class="table table-condensed" style="width: auto !important; float: left; margin-right: 10px;">
 
 <caption>
 
@@ -369,13 +378,13 @@ regression.
 
 <tr>
 
-<th style="text-align:left;">
+<th style="text-align:left;color: white !important;background-color: #696969 !important;text-align: center;">
 
 Feature
 
 </th>
 
-<th style="text-align:right;">
+<th style="text-align:right;color: white !important;background-color: #696969 !important;text-align: center;">
 
 Weight
 
@@ -551,7 +560,7 @@ age
 
 </table>
 
-<table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-condensed" style="width: auto !important; margin-right: 0; margin-left: auto">
 
 <caption>
 
@@ -564,13 +573,13 @@ regression.
 
 <tr>
 
-<th style="text-align:left;">
+<th style="text-align:left;color: white !important;background-color: #696969 !important;text-align: center;">
 
 Feature
 
 </th>
 
-<th style="text-align:right;">
+<th style="text-align:right;color: white !important;background-color: #696969 !important;text-align: center;">
 
 Weight
 
@@ -746,19 +755,23 @@ marital\_status\_Married-spouse-absent
 
 </table>
 
-In addition, the top features as determined by the Adaboost model can be
-found below. The AdaBoost model determined that the most significant
-feature in predicting salary is `education-num` followed closely by
-`age`. These two features taken together account for a large proportion
-of the model’s predictive mechanism. Note that both `education-num` and
-`age` appear in the top ten most important positive features (target =
-`>50K`) determined by the logistic regression model.
+</br> In addition, the top features as determined by the Adaboost model
+can be found below. The AdaBoost model determined that the most
+significant feature in predicting salary is education\_num followed
+closely by age. These two features taken together account for a large
+proportion of the model’s predictive mechanism. Note that both
+`education-num` and `age` appear in the top ten most important positive
+features (target = `>50K`) determined by the logistic regression
+model.
+
+</br>
 
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 
 <caption>
 
-Table 4. Most important features determined by Adaboost.
+Table 4. Most important features determined by
+Adaboost.
 
 </caption>
 
@@ -766,13 +779,13 @@ Table 4. Most important features determined by Adaboost.
 
 <tr>
 
-<th style="text-align:left;">
+<th style="text-align:left;color: white !important;background-color: #696969 !important;text-align: center;">
 
 Feature
 
 </th>
 
-<th style="text-align:right;">
+<th style="text-align:right;color: white !important;background-color: #696969 !important;text-align: center;">
 
 Importance
 
@@ -948,8 +961,8 @@ occupation\_Prof-specialty
 
 </table>
 
-Some elements of the data analysis pipeline require further discussion.
-The features `fnlwgt`, `capital-gain`, `capital-loss`, and
+</br> Some elements of the data analysis pipeline require further
+discussion. The features `fnlwgt`, `capital-gain`, `capital-loss`, and
 `education-num` were dropped. However, it is worthwhile to address the
 possibility that some of these features could have been good predictors
 of income. Further improvements to the models could have been
