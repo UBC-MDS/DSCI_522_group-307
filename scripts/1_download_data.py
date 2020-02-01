@@ -1,4 +1,4 @@
-# Author: DSCI 522 - Group 307
+# Author: Saurav Chowdhury
 # Date: 2020-22-01
 #
 """This script downloads all the required dataset from a url and store it as csv at a desired location. 

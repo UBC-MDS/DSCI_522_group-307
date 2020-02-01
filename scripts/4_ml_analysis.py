@@ -1,3 +1,5 @@
+# Author: Evhen Dytyniak
+# Date: 2020-01-02
 """
 This script performs the machine learning portion of the data analysis. 
 
