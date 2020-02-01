@@ -18,7 +18,7 @@ To replicate this analysis, clone this repository, install the dependencies, and
 __Note__  
 - __Running `make clean` followed by `make all` will take up to an hour and consume all available processors__    
 - __For the purpose of this milestone submission, `make clean_light` will only remove files that do not trigger the time-consuming scripts, but will demonstrate correct use of the Makefile__   
-- __if using a Windows OS, it appears the downloading a local copy of the repo and running `make clean_light` followed by `make all`, runs all of the scripts in the pipeline (this is not the case for Linux or MacOS systems)__  
+- __if using a Windows OS, it appears that downloading a local copy of the repo and running `make clean_light` followed by `make all`, runs all of the scripts in the pipeline (this is not the case for Linux or MacOS systems)__  
 ```
 make clean
 make all
