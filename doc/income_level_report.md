@@ -113,10 +113,11 @@ for optimization: `solver` for `LogisticRegression`; `learning_rate` for
 Both Python and R programming languages were used in conjunction with
 the following packages: doctopt (de Jonge 2018; Keleshev 2014), requests
 (Reitz 2019), pandas(McKinney 2010), numpy (Oliphant 2006), scikit-learn
-(Pedregosa et al. 2011), pyarrow(Developers 2019), feather (Wickham
-2019d), knitr (Xie 2014), tidyverse (Wickham 2019c), plyr (Wickham
-2019a), ggridges (Wilke 2020), ggthemes (Arnold 2019), testthat (Wickham
-2019b), and gridExtra (Auguie 2017).
+(Pedregosa et al. 2011), feather-format (*Feather* 2019),
+pyarrow(Developers 2019), feather (Wickham 2019c), knitr (Xie 2014),
+tidyverse (Wickham 2019b), ggridges (Wilke 2020), ggthemes (Arnold
+2019), testthat (Wickham 2019a), gridExtra (Auguie 2017), rlang (Henry
+2020), and rmarkdown (Allaire et al. 2020).
 
 # Results & Discussion
 
@@ -976,6 +977,15 @@ at the expense of interpretability.
 
 <div id="refs" class="references">
 
+<div id="ref-rmarkdown">
+
+Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin
+Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and
+Richard Iannone. 2020. *Rmarkdown: Dynamic Documents for R*.
+<https://github.com/rstudio/rmarkdown>.
+
+</div>
+
 <div id="ref-ggthemes">
 
 Arnold, Jeffrey B. 2019. *Ggthemes: Extra Themes, Scales and Geoms for
@@ -1027,6 +1037,19 @@ Sciences. <http://archive.ics.uci.edu/ml>.
 
 </div>
 
+<div id="ref-feather-format">
+
+*Feather*. 2019. <https://github.com/wesm/feather/tree/master/python>.
+
+</div>
+
+<div id="ref-rlang">
+
+Henry, Lionel. 2020. *Rlang: Functions for Base Types and Core R and
+’Tidyverse’ Features*. <https://CRAN.R-project.org/package=rlang>.
+
+</div>
+
 <div id="ref-py_docopt">
 
 Keleshev, Vladimir. 2014. <https://github.com/docopt/docopt>.
@@ -1063,30 +1086,23 @@ Reitz, Kenneth. 2019. *Requests: HTTP for Humans*.
 
 </div>
 
-<div id="ref-plyr">
-
-Wickham, Hadley. 2019a. *Plyr: Tools for Splitting, Applying and
-Combining Data*. <https://CRAN.R-project.org/package=docopt>.
-
-</div>
-
 <div id="ref-testthat">
 
-———. 2019b. *Testthat: Unit Testing for R*.
+Wickham, Hadley. 2019a. *Testthat: Unit Testing for R*.
 <https://CRAN.R-project.org/package=testthat>.
 
 </div>
 
 <div id="ref-tidyverse">
 
-———. 2019c. *Tidyverse: Easily Install and Load the ’Tidyverse’*.
+———. 2019b. *Tidyverse: Easily Install and Load the ’Tidyverse’*.
 <https://CRAN.R-project.org/package=tidyverse>.
 
 </div>
 
 <div id="ref-R_feather">
 
-———. 2019d. <https://CRAN.R-project.org/package=feather>.
+———. 2019c. <https://CRAN.R-project.org/package=feather>.
 
 </div>
 
