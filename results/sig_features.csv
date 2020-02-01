@@ -2,7 +2,7 @@ Feature,Importance
 education_num,0.22
 age,0.2
 hours_per_week,0.06
-sex_Male,0.04
+sex_Female,0.04
 relationship_Wife,0.04
 occupation_Sales,0.02
 occupation_Handlers-cleaners,0.02
