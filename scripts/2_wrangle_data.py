@@ -1,4 +1,4 @@
-# Author: DSCI 522 - Group 307
+# Author: Saurav Chowdhury
 # Date: 2020-22-01
 """
 This script takes the downloaded file and clean/process/transform the data for further analysis. It then saves it
