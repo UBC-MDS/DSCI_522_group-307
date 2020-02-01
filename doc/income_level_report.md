@@ -20,9 +20,9 @@ most important features in predicting a yearly salary of greater than
 50,000 USD were `marital_status_Married-AF-spouse` and
 `marital_status_Married-civ-spouse` while the most important features in
 predicting a yearly salary of less than 50,000 USD were
-`occupation-private-house-serv` and `workclass-without-pay`. The
-Adaboost model identified `education-num` and `age` as the most
-important features in classification.
+`occupation_Priv-house-serv` and `workclass_Without-pay`. The AdaBoost
+model identified `education-num` and `age` as the most important
+features in classification.
 
 # Introduction
 
@@ -57,22 +57,23 @@ eight categorical features. The numerical features were `age`, `fnlwgt`,
 The categorical features were `workclass`, `education`,
 `marital-status`, `occupation`, `relationship`, `race`, `sex`, and
 `native-country`. The target values were `>50K` and `<=50K` indicating
-whether or not income exceeds $50,000 per year. It is worth mentioning
+whether or not income exceeded $50,000 per year. It is worth mentioning
 that `fnlwgt`, `capital-gain`, `capital-loss`, and `education` were
 excluded for the analysis. `Education` was excluded in favour of its
-numerical counterpart (`education-num`). The other features were omitted
-because it was unclear what they were measuring. Missing values were
-found in the `workclass`, `occupation`, and `native-country` columns.
-Rows with missing values were removed for the analysis. In addition,
-while `native-country` was originally comprised of 41 attributes, they
-were abstracted to be either `United-States` or `non-US`.
+numerical counterpart (`education-num` specifies educational attainment
+in years). The other features were omitted because it was unclear what
+they were measuring. Missing values were found in the `workclass`,
+`occupation`, and `native-country` columns. Rows with missing values
+were removed for the analysis. In addition, while `native-country` was
+originally comprised of 41 attributes, they were abstracted to be either
+`United-States` or `non-US`.
 
 ### Analysis
 
 With the goal of evaluating feature importance in predicting income, a
 logistic regression classifier and an AdaBoost classifier were chosen.
 Both classifiers generate feature importance metrics, allowing for
-feature interpretablity. Other classifiers (e.g. random forest, SVM)
+feature interpretablity. Other classifiers (i.e. random forest, SVM)
 were chosen to comparatively demonstrate the robustness of the logistic
 regression and AdaBoost models.
 
@@ -80,10 +81,10 @@ For binary classification, logistic regression assigns positives weights
 to features that best predict positive outcomes (`>50K`) and negative
 weights to features that best predict negative outcomes (`<=50K`). The
 larger the magnitude of the weight, the greater the influence is on the
-outcome. AdaBoost is an ensembling method that assigns a feature
-importance to each feature. This metric is always positive and sums to
-one. The larger the magnitude of the metric, the greater the importance
-of the feature to the overall model in predicting. Random forest
+outcome. AdaBoost is an ensembling method that assigns feature
+importance. This metric is always positive and sums to one. The larger
+the magnitude of the metric, the greater the importance of the feature
+is to the overall model in making predictions. Random forest
 classsifiers generally provide robust models but they are not easily
 interpretable. This classifier was included to allow for the comparison
 of a non-parametric model to the parametric models. The SVM classifier
@@ -99,14 +100,14 @@ features.
 A grid search with 10-fold cross-validation was conducted to determine
 the optimal hyperparameters. The following hyperparameters were selected
 for optimization: `solver` for `LogisticRegression`; `learning_rate` for
-`Adaboost`; `kernel`, `C`, and `gamma` for `SVM`; and `max_depth` for
+`AdaBoost`; `kernel`, `C`, and `gamma` for `SVM`; and `max_depth` for
 `RandomForest`.
 
 Both Python and R programming languages were used in conjunction with
 the following packages: doctopt (de Jonge 2018; Keleshev 2014), requests
-(Reitz 2019), pandas(McKinney 2010), numpy (Oliphant 2006), scikit-learn
-(Pedregosa et al. 2011), feather-format (*Feather* 2019),
-pyarrow(Developers 2019), feather (Wickham 2019c), knitr (Xie 2014),
+(Reitz 2019), pandas (McKinney 2010), numpy (Oliphant 2006),
+scikit-learn (Pedregosa et al. 2011), feather-format (*Feather* 2019),
+pyarrow (Developers 2019), feather (Wickham 2019c), knitr (Xie 2014),
 tidyverse (Wickham 2019b), ggridges (Wilke 2020), ggthemes (Arnold
 2019), testthat (Wickham 2019a), gridExtra (Auguie 2017), rlang (Henry
 2020), and rmarkdown (Allaire et al. 2020).
@@ -123,7 +124,7 @@ by `Prof-speciality` in the high-income class. While `Adm-clerical`,
 occurring professions in the low-income class, no single occupation
 dominated. To get a better understanding of the numerical features in
 the dataset, their distributions were compared across income levels
-(red: `50K`, blue: `<= 50K`). With respect to age, the centers of the
+(red: `<=50K`, blue: `>50K`). With respect to age, the centers of the
 distributions were not aligned, suggesting that age might be a good
 predictor. With regard to education, the largest peak is located further
 to the right (i.e. more years spent in education) in the high-income
@@ -149,10 +150,10 @@ high and low income levels.
 
 </br> The validation scores from the four models were all similar to one
 another (within 0.1% difference). These values demonstrated the
-robustness of the linear regression and AdaBoost models. Moreover, the
+robustness of the logistic regression and AdaBoost models. Moreover, the
 fit and predict times of the logistic regression classifier were much
 faster than those of other models. Once the optimal hyperparameters for
-the logistic regression and Adaboost models were chosen to be `solver =
+the logistic regression and AdaBoost models were chosen to be `solver =
 "saga"` and `learning_rate = 1`, respectively, the two optimized models
 were trained on the combined training and validation
 sets.
@@ -352,16 +353,16 @@ Logistic Regression
 
 </br> The top ten features that contribute to a positive or negative
 classification, as determined by the logistic regression model are
-listed below. The linear regression model suggests that the most
+listed below. The logistic regression model suggests that the most
 important features in classifying an income of `>50K` are
 marital\_status\_Married-AF-spouse, marital\_status\_Married-civ-spouse,
 and relationship\_Wife. Features that one would objectively expect to be
-predictive of a high salary including `education` and `occupation` of
-`Exec-managerial` were both in the top five. The most important features
-in classifying a salary of `<=50K` are
-marital\_status\_Married-AF-spouse, marital\_status\_Married-civ-spouse
-followed closely by relationship\_Wife. `occupation` of `Other-service`
-and `Farming-fishing` in addition to `sex_Female` were also strong
+predictive of a high salary including `education-num` and
+`occupation_Exec-managerial` were both in the top five. The most
+important features in classifying a salary of `<=50K` are
+occupation\_Priv-house-serv, workclass\_Without-pay followed closely by
+relationship\_Own-child. `occupation` of `Other-service` and
+`Farming-fishing` in addition to `sex_Female` were also strong
 predictors of a lower
 salary.
 
@@ -757,7 +758,7 @@ marital\_status\_Married-spouse-absent
 
 </table>
 
-</br> In addition, the top features as determined by the Adaboost model
+</br> In addition, the top features as determined by the AdaBoost model
 can be found below. The AdaBoost model determined that the most
 significant feature in predicting salary is education\_num followed
 closely by age. These two features taken together account for a large
@@ -773,7 +774,7 @@ model.
 <caption>
 
 Table 4. Most important features determined by
-Adaboost.
+AdaBoost.
 
 </caption>
 
@@ -963,8 +964,15 @@ occupation\_Prof-specialty
 
 </table>
 
-</br> Some elements of the data analysis pipeline require further
-discussion. The features `fnlwgt`, `capital-gain`, `capital-loss`, and
+</br> Therefore, our model supports the initial claim that educational
+attainment has been and continues to be an important predictor of
+economic success. Interestingly, while the CBC report suggests that the
+gender wage gap is currently shrinking, our model suggests that being a
+woman was associated with earning less than $50,000 per year around the
+turn of the century.
+
+Some elements of the data analysis pipeline require further discussion.
+The features `fnlwgt`, `capital-gain`, `capital-loss`, and
 `education-num` were dropped. However, it is worthwhile to address the
 possibility that some of these features could have been good predictors
 of income. Further improvements to the models could have been
