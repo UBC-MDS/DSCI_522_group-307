@@ -1,96 +1,100 @@
 # author: Reiko Okamoto
-# date: 2020-01-23
+# date: 2020-01-31
 
 # Code attribution: Tiffany Timbers' breast-cancer-predictor EDA script
 
-"Creates EDA tables and figures for the pre-processed training set
+"Creates EDA figures using the pre-processed training set
 from the Adult dataset from the UCI Machine Learning Repository 
 (https://archive.ics.uci.edu/ml/datasets/Adult).
-The tables and figures are saved as .csv and .png files, respectively.
+The figures are saved as a PNG file.
 
 Usage: scripts/3_eda.R --train=<train> --out_dir=<out_dir>
 
 Options:  
 --train=<train>             Path to cleaned training data (as feather file)
---out_dir=<out_dir>         Path to directory where tables and figures should be saved
+--out_dir=<out_dir>         Path to directory where figures should be saved
 " -> doc
 
 library(feather)
 library(tidyverse)
-library(plyr)
 library(docopt)
-library(ggridges)
 library(ggthemes)
+library(testthat)
+library(gridExtra)
 theme_set(theme_minimal())
 
 opt <- docopt(doc)
 
+#' Creates EDA figures 
+#'
+#' @param train path to cleaned training data
+#' @param out_dir path to directory where figures should be saved
+#'
+#' @return PNG file
+#' 
+#' @example 
+#' main("data/clean_train_data.feather", "results")
 main <- function(train, out_dir) {
   
   # LOAD DATASET
   df <- read_feather(train)
   
-  cat_feat <- c("workclass", "marital_status", "occupation", "relationship", "race", "sex", "native_country")
-  num_feat <- c("age", "education_num", "hours_per_week")
+  # CREATE PLOT TO SUMMARIZE DISTRIBUTION OF `age`
+  p1 <- df %>%
+    ggplot(aes(age)) +
+    geom_histogram(aes(fill = target), color = "white", bins = 30) +
+    facet_grid(target ~ .) +
+    labs(x = "Age",
+         y = "Count") +
+    theme_bw() +
+    theme(axis.text = element_text(size = 16),
+          axis.title = element_text(size = 16),
+          strip.text = element_text(size = 14),
+          legend.position = "none")
   
-  # CREATE TABLE TO SUMMARIZE NUMERICAL FEATURES
-  num_df <- df %>%
-    select(num_feat)
-  
-  num_mean <- num_df %>%
-    apply(2, mean)
-  num_min <- num_df %>%
-    apply(2, min)
-  num_max <- num_df %>%
-    apply(2, max)
-  
-  num_table <- data.frame(num_mean, num_min, num_max) %>%
-    dplyr::rename(mean = num_mean, 
-                  min = num_min, 
-                  max = num_max) %>%
-    mutate(feature = num_feat) %>%
-    select(feature, mean, min, max)
-  
-  # WRITE TABLE
-  write_csv(num_table, paste0(out_dir, "/num_feat_summary.csv"))
-  
-  # CREATE TABLE TO SUMMARIZE CATEGORICAL FEATURES
-  cat_df <- df %>%
-    select(cat_feat)
-  
-  n_uniq_feat <- c()
-  uniq_feat <- c()
-  for (feat in cat_feat) {
-    print(feat)
-    uniq <- unique(cat_df[[feat]])
-    uniq_feat <- append(uniq_feat, paste(uniq, collapse = ", "))
-    print(uniq_feat)
-    n_uniq <- length(uniq)
-    n_uniq_feat <- append(n_uniq_feat, n_uniq)
-  }
-  cat_table <- data.frame(feature = cat_feat, n_uniq_feat, uniq_feat)
-  
-  # WRITE TABLE 
-  write_csv(cat_table, paste0(out_dir, "/cat_feat_summary.csv"))
-  
-  # CREATE PLOT TO SUMMARIZE DISTRIBUTION OF NUMERICAL FEATURES
-  num_plot <- df %>%
-    select(num_feat, target) %>%
-    gather(key = feature, value = value, -target) %>%
-    ggplot(aes(x = value, y = target, color = target, fill = target)) +
-    facet_wrap(. ~ feature, scale = "free") +
-    geom_density_ridges(alpha = 0.8) +
-    scale_fill_few() +
-    scale_color_few() +
-    guides(fill = FALSE, color = FALSE) +
-    theme(axis.title.x = element_blank(),
+  # CREATE PLOT TO SUMMARIZE DISTRIBUTION OF `education_num`
+  p2 <- df %>%
+    ggplot(aes(education_num)) +
+    geom_histogram(aes(fill = target), color = "white", bins = 17) +
+    facet_grid(target ~ .) +
+    labs(x = "Educational attainment (years)",
+         y = "Count") +
+    theme_bw() +
+    theme(axis.text = element_text(size = 16),
+          axis.title = element_text(size = 16),
+          strip.text = element_text(size = 14),
+          legend.position = "none",
           axis.title.y = element_blank())
   
+  # CREATE PLOT TO SUMMARIZE DISTRIBUTION OF `hours_per_week`
+  p3 <- df %>%
+    ggplot(aes(hours_per_week)) +
+    geom_histogram(aes(fill = target), color = "white", bins = 22) +
+    facet_grid(target ~ .) +
+    labs(x = "Working hours per week",
+         y = "Count") +
+    theme_bw() +
+    theme(axis.text = element_text(size = 16),
+          axis.title = element_text(size = 16),
+          strip.text = element_text(size = 14),
+          legend.position = "none",
+          axis.title.y = element_blank())
+  
+  num_plot <- grid.arrange(p1, p2, p3, ncol = 3)
+  
   # WRITE PLOT
-  ggsave(paste0(out_dir, "/dist_num_feat.png"),
+  ggsave(paste0(out_dir, "/numerical.png"),
          plot = num_plot,
-         width = 7,
-         height = 5)
+         width = 12,
+         height = 6)
 }
+
+test_main <- function() {
+  test_that("Input should be a feather file", {
+    expect_equal(str_sub(opt[["--train"]], -7), "feather")
+  })
+}
+
+test_main()
 
 main(opt[["--train"]], opt[["--out_dir"]])
