@@ -10,7 +10,7 @@ This analysis attempted determine the most important features when predicting a 
 
 The data used in this project was created by Ronny Kohavi and Barry Becker, Data Mining and Visualization division at Silicon Graphics. This data was extracted from the 1994 US Census Data. It was sourced from the UCI Machine Learning Repository (Dua and Graff 2017) and can be found [here](https://archive.ics.uci.edu/ml/datasets/adult). Each row in the data represents the attributes of an individual such as sex, race, age, educational attainment, and working hours. The target variable is whether one's income is above or below 50,000 USD.  
 ## Report
-The report can be found [here](https://github.com/UBC-MDS/DSCI_522_group-307/blob/master/doc/income_level_report.md).
+The report can be found [here](https://ubc-mds.github.io/DSCI_522_group-307/doc/income_level_report.html).
 
 ## Usage
 To replicate this analysis, clone this repository, install the dependencies, and run the following commands at the command line from the root directory.  
