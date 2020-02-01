@@ -1,3 +1,7 @@
+# Income Level Predictor Data Pipe
+# author: DSCI 522 - Group 307
+# date: 2020-02-01
+
 all : doc/income_level_report.md
 
 data/adult_train_data.csv : scripts/1_download_data.py 
@@ -19,9 +23,13 @@ results/grid_search_summary.csv results/neg_features.csv results/pos_features.cs
 	python scripts/4_ml_analysis.py --train=data/clean_train_data.feather --valid=data/clean_validation_data.feather --test=data/clean_test_data.feather --outputdir=results
 
 doc/income_level_report.md : doc/income_level_report.Rmd doc/income_level_predictor.bib results/numerical.png results/grid_search_summary.csv results/pos_features.csv results/neg_features.csv results/sig_features.csv
-	Rscript -e "rmarkdown::render('doc/income_level_report.Rmd', output_format = 'github_document')"
+	Rscript -e "library(rmarkdown); render('doc/income_level_report.Rmd', output_format = 'github_document')"
 
 clean:
 	rm -rf data/*
 	rm -rf doc/income_level_report.md
 	rm -rf results/*
+
+clean_light:  
+	rm -rf doc/income_level_report.md
+	rm -rf results/numerical.png
