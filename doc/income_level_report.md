@@ -3,6 +3,14 @@ Income Level Predictor
 Reiko Okamoto and Evhen Dytyniak
 2020/01/31
 
+  - [Summary](#summary)
+  - [Introduction](#introduction)
+  - [Method](#method)
+      - [Data](#data)
+      - [Analysis](#analysis)
+  - [Results & Discussion](#results-discussion)
+  - [Bibliography](#bibliography)
+
 <style>
 body {
 text-align: justify}
@@ -127,8 +135,7 @@ predictor. With regard to education, the largest peak is located further
 to the right (i.e. more years spent in education) in the high-income
 class. Interestingly, across both income groups, a 40-hour workweek
 appeared to be the standard. However, it is worth noting that there is a
-second peak around 50 hours per week among the high
-earners.
+second peak around 50 hours per week among the high earners.
 
 </br>
 
@@ -152,15 +159,13 @@ fit and predict times of the logistic regression classifier were much
 faster than those of other models. Once the optimal hyperparameters for
 the logistic regression and Adaboost models were chosen to be `solver =
 "saga"` and `learning_rate = 1`, respectively, the two optimized models
-were trained on the combined training and validation
-sets.
+were trained on the combined training and validation sets.
 
 <table class="table table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
 
 <caption>
 
-Table 1. Summary of hyperparameter
-optimization.
+Table 1. Summary of hyperparameter optimization.
 
 </caption>
 
@@ -176,22 +181,19 @@ Classifier
 
 <th style="text-align:right;color: white !important;background-color: #696969 !important;text-align: center;">
 
-Validation
-Score
+Validation Score
 
 </th>
 
 <th style="text-align:right;color: white !important;background-color: #696969 !important;text-align: center;">
 
-Mean Predict
-Time
+Mean Predict Time
 
 </th>
 
 <th style="text-align:right;color: white !important;background-color: #696969 !important;text-align: center;">
 
-Mean Score
-Time
+Mean Score Time
 
 </th>
 
@@ -360,8 +362,7 @@ in classifying a salary of `<=50K` are
 marital\_status\_Married-AF-spouse, marital\_status\_Married-civ-spouse
 followed closely by relationship\_Wife. `occupation` of `Other-service`
 and `Farming-fishing` in addition to `sex_Female` were also strong
-predictors of a lower
-salary.
+predictors of a lower salary.
 
 </br>
 
@@ -761,8 +762,7 @@ significant feature in predicting salary is education\_num followed
 closely by age. These two features taken together account for a large
 proportion of the model’s predictive mechanism. Note that both
 `education-num` and `age` appear in the top ten most important positive
-features (target = `>50K`) determined by the logistic regression
-model.
+features (target = `>50K`) determined by the logistic regression model.
 
 </br>
 
@@ -770,8 +770,7 @@ model.
 
 <caption>
 
-Table 4. Most important features determined by
-Adaboost.
+Table 4. Most important features determined by Adaboost.
 
 </caption>
 
