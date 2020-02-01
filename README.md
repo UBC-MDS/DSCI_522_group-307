@@ -1,7 +1,7 @@
 # Income Level Predictor
 A data analysis project for DSCI 522 Data Science Workflows
 
-Authors: Saurav Chowdhury, Evhen Dytyniak, and Reiko Okamoto 
+Authors: Saurav Chowdhury, Evhen Dytyniak, and Reiko Okamoto </br>
 Date: 2020-01-24
 
 ## About
@@ -13,21 +13,19 @@ The data used in this project was created by Ronny Kohavi and Barry Becker, Data
 The report can be found [here](https://github.com/UBC-MDS/DSCI_522_group-307/blob/master/doc/income_level_report.md).
 
 ## Usage
-To replicate this analysis, clone this repository, install the dependencies, and run the following at the command line from the root directory. **_NOTE: the ML analysis can take up to an hour to run._**
-
-```
-make all
-```
-To start over with a clean slate with no intermediate or final outputs, run the following at the command line from the root directory:
-
+To replicate this analysis, clone this repository, install the dependencies, and run the following commands at the command line from the root directory.  
+</br>
+__Note__  
+- __Running `make clean` followed by `make all` will take up to an hour and consume all available processors__    
+- __For the purpose of this milestone submission, `make clean_light` will only remove files that do not trigger the time-consuming scripts, but will demonstrate correct use of the Makefile__  
 ```
 make clean
+make all
 ```
-
-Alternatively, to just remove the output of the EDA and report, run the following at the command line from the root directory. This essentially prevents the user from re-running the ML analysis that can take up to an hour to run.
-
+OR, for this submission:
 ```
 make clean_light
+make all
 ```
 
 ## Dependencies
