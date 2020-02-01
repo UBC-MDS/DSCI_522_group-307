@@ -6,38 +6,28 @@ Date: 2020-01-24
 
 ## About
 
-This analysis attempted determine the most important features when predicting a yearly salary of more than 50,000 USD. A logistic regression model and AdaBoost model were trained in an effort to extract feature importance. The models did not perform exceedingly well, with scores in the low 80s, but performed similarly to random forest and support vector machine (SVM) models. The logistic regression model’s most important features in predicting a yearly salary of greater than 50,000 USD were `marital_status_Married-AF-spouse` and `marital_status_Married-civ-spouse` while the most important features in predicting a yearly salary of less than 50,000 USD were `occupation-private-house-serv` and `workclass-without-pay`. The Adaboost model identified `education-num` and `age` as the most important features in classification.
+This analysis attempted determine the most important features when predicting a yearly salary of more than 50,000 USD. A logistic regression model and AdaBoost model were trained in an effort to extract feature importance. The models did not perform exceedingly well, with scores in the low 80s, but performed similarly to random forest and support vector machine (SVM) classifiers. The logistic regression model’s most important features in predicting a yearly salary of greater than 50,000 USD were `marital_status_Married-AF-spouse` and `marital_status_Married-civ-spouse` while the most important features in predicting a yearly salary of less than 50,000 USD were `occupation_Priv-house-serv` and `workclass_Without-pay`. The Adaboost model identified `education_num` and `age` as the most important features in classification.
 
-The data used in this project was created by Ronny Kohavi and Barry Becker, Data Mining and Visualization division at Silicon Graphics. This data was extracted from 1994 US Census Data. It was sourced from the UCI Machine Learning Repository (Dua and Graff 2017) and can be found [here](https://archive.ics.uci.edu/ml/datasets/adult). Each row in the data represents the attributes of an individual such as: age, education level, race, working hours, etc. The target variable is whether one's income is above or below 50K.  
-
+The data used in this project was created by Ronny Kohavi and Barry Becker, Data Mining and Visualization division at Silicon Graphics. This data was extracted from the 1994 US Census Data. It was sourced from the UCI Machine Learning Repository (Dua and Graff 2017) and can be found [here](https://archive.ics.uci.edu/ml/datasets/adult). Each row in the data represents the attributes of an individual such as sex, race, age, educational attainment, and working hours. The target variable is whether one's income is above or below 50,000 USD.  
 ## Report
 The report can be found [here](https://github.com/UBC-MDS/DSCI_522_group-307/blob/master/doc/income_level_report.md).
 
 ## Usage
-To replicate this analysis, clone this repository, install the dependencies, and run the following commands at the command line from the root directory. 
+To replicate this analysis, clone this repository, install the dependencies, and run the following command at the command line from the root directory:
 
 ```
-# Download data -train
-Python scripts/1_download_data.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data" --out_path="data/adult_train_data.csv"
+make all
+```
+To start over with a clean slate with no intermediate or final outputs, run the following command at the command line from the root directory:
 
-# Download data -test
-Python scripts/1_download_data.py --url="https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.test" --out_path="data/adult_test_data.csv" --skiprows=1
+```
+make clean
+```
 
-# Pre-process - train
-Python scripts/2_wrangle_data.py --in_file="data/adult_train_data.csv" --out_dir="data"
+Alternatively, to remove the output of the EDA and overall analysis, run the following command at the command line from the root directory:
 
-# Pre-process - test
-Python scripts/2_wrangle_data.py --in_file="data/adult_test_data.csv" --out_dir="data" --istrain=0
-
-# Create EDA tables and figures
-Rscript scripts/3_eda.R --train=clean_train_data.feather --out_dir=results 
-
-# Run ML analysis
-Python scripts/4_ml_analysis.py --train="data/clean_train_data.feather" --valid="data/clean_validation_data.feather" --test="clean_test_data.feather" --outputdir="results"
-
-# Render final report
-Rscript -e "rmarkdown::render('doc/income_level_report.Rmd', output_format = 'github_document')"
-
+```
+make clean_light
 ```
 
 ## Dependencies
@@ -60,7 +50,7 @@ Rscript -e "rmarkdown::render('doc/income_level_report.Rmd', output_format = 'gi
 
 ### License
 
-The Income Level Predictor materials are licensed under the MIT License - Copyright (c) 2020 Master of Data Science at the University of British Columbia. 
+The Income Level Predictor materials are licensed under the MIT License.
 
 ## References
 
