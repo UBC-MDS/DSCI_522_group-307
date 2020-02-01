@@ -22,6 +22,7 @@ opt = docopt(__doc__)
 
 def main(url, out_path, skiprows=None, header='infer'):
     
+    #------------------ data sources for this analysis ------------------------------------
     #url_data = 'https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data'
     #url_test = 'https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.test'
  
@@ -45,7 +46,6 @@ def test_fun():
   This functions checks if the main function is able to download and store a file at a specific location
   
   """
-  
   test_url = "http://mlr.cs.umass.edu/ml/machine-learning-databases/auto-mpg/auto-mpg.data"
   path = "data/auto_mpg.csv"
   main(test_url, path)
