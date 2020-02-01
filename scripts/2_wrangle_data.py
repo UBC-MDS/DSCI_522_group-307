@@ -17,6 +17,7 @@ Options:
 from docopt import docopt
 import pandas as pd
 import numpy as np
+import os
 from sklearn.model_selection import train_test_split
 import feather
 
@@ -24,7 +25,7 @@ opt = docopt(__doc__)
 
 def main(in_file, out_dir, istrain=1):
     
-    #fetching column names
+    #--------fetching column names
     url_names = 'https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.names'
     names  = pd.read_table(url_names, header = None)
   
@@ -35,27 +36,27 @@ def main(in_file, out_dir, istrain=1):
     
     df = pd.read_csv(in_file)
     
-    #adding custom column names and formatting them
+    #--------adding custom column names and formatting them
     df.columns = column_names
     df.columns = df.columns.str.replace('-', '_') 
 
-    #categorizing numerical and categorical features
-    numerical = ['age','fnlwgt','education_num','capital_gain','capital_loss','hours_per_week']
-    categorical = ['workclass','education','marital_status','occupation','relationship','race','sex','native_country','target']
+    #--------categorizing numerical and categorical features
+    numerical = ['age', 'fnlwgt', 'education_num', 'capital_gain', 'capital_loss', 'hours_per_week']
+    categorical = ['workclass', 'education', 'marital_status', 'occupation', 'relationship', 'race', 'sex', 'native_country', 'target']
     
-    # Getting rid of blanks at the start of categorical features
+    #-------- getting rid of blanks at the start of categorical features
     df[categorical] = df[categorical].apply(lambda x: x.str.strip())
     
-    #Removing missing values
+    #-------- removing missing values
     df = df[(df.native_country != '?') & (df.occupation != '?') & (df.workclass !='?')]
     
-    #changing other native_countries to non-US, since US is predominant
+    #-------- changing other native_countries to non-US, since US is predominant
     df.loc[df['native_country'] != 'United-States', 'native_country'] = 'Non-US'
     
     cap_gain_98 = np.quantile(df['capital_gain'], 0.98)
     cap_loss_98 = np.quantile(df['capital_loss'], 0.98)
     
-    #removing outliers from capital_gain and capital_loss by capping method
+    #-------- removing outliers from capital_gain and capital_loss by capping method
     df.loc[df['capital_gain'] > cap_gain_98, 'capital_gain'] = cap_gain_98
     df.loc[df['capital_loss'] > cap_loss_98, 'capital_loss'] = cap_loss_98
     
@@ -81,7 +82,33 @@ def main(in_file, out_dir, istrain=1):
             
     return
 
+def test_fun():
+  """
+  This functions checks if the main function is able to take input file wrangle it and store at a specific location
+  
+  """
+  
+  #----------- getting sample data with 10 rows--------------------#
+  
+  test_df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.test', skiprows = 1, nrows = 10)
+  test_df.to_csv("data/sample_wrangle_data.csv", index = False)
+  
+  in_file = "data/sample_wrangle_data.csv"
+  out_dir = "data"
+  
+  #-------------- check for train data-----------------------#
+  main(in_file, out_dir)
+  assert os.path.exists(out_dir+'/clean_train_data.csv'), "Clean train data not found in location"
+  assert os.path.exists(out_dir+'/clean_train_data.feather'), "Clean train data not found in location"
+  
+  #-------------- check for test data-----------------------#
+  main(in_file, out_dir, 3)
+  assert os.path.exists(out_dir+'/clean_test_data.csv'), "Clean test data not found in location"
+  assert os.path.exists(out_dir+'/clean_test_data.feather'), "Clean test data not found in location"
+
+
 if __name__ == "__main__":
+  test_fun()
   main(opt["--in_file"], opt["--out_dir"], opt["--istrain"])    
 
 
