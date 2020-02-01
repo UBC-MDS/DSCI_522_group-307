@@ -113,9 +113,10 @@ for optimization: `solver` for `LogisticRegression`; `learning_rate` for
 Both Python and R programming languages were used in conjunction with
 the following packages: doctopt (de Jonge 2018; Keleshev 2014), requests
 (Reitz 2019), pandas(McKinney 2010), numpy (Oliphant 2006), scikit-learn
-(Pedregosa et al. 2011), feather (Wickham 2019c), knitr (Xie 2014),
-tidyverse (Wickham 2019b), plyr (Wickham 2019a), ggridges (Wilke 2020),
-and ggthemes (Arnold 2019).
+(Pedregosa et al. 2011), pyarrow(Developers 2019), feather (Wickham
+2019d), knitr (Xie 2014), tidyverse (Wickham 2019c), plyr (Wickham
+2019a), ggridges (Wilke 2020), ggthemes (Arnold 2019), testthat (Wickham
+2019b), and gridExtra (Auguie 2017).
 
 # Results & Discussion
 
@@ -129,7 +130,7 @@ by `Prof-speciality` in the high-income class. While `Adm-clerical`,
 occurring professions in the low-income class, no single occupation
 dominated. To get a better understanding of the numerical features in
 the dataset, their distributions were compared across income levels
-(orange: `50K`, blue: `<= 50K`). With respect to age, the centers of the
+(red: `50K`, blue: `<= 50K`). With respect to age, the centers of the
 distributions were not aligned, suggesting that age might be a good
 predictor. With regard to education, the largest peak is located further
 to the right (i.e. more years spent in education) in the high-income
@@ -141,7 +142,7 @@ second peak around 50 hours per week among the high earners.
 
 <div class="figure">
 
-<img src="../results/dist_num_feat.png" alt="Figure 1. Comparison of the distributions of numerical features between high and low income levels." width="75%" />
+<img src="../results/numerical.png" alt="Figure 1. Comparison of the distributions of numerical features between high and low income levels." width="80%" />
 
 <p class="caption">
 
@@ -982,6 +983,13 @@ Arnold, Jeffrey B. 2019. *Ggthemes: Extra Themes, Scales and Geoms for
 
 </div>
 
+<div id="ref-gridExtra">
+
+Auguie, Baptiste. 2017. *GridExtra: Miscellaneous Functions for "Grid"
+Graphics*. <https://CRAN.R-project.org/package=gridExtra>.
+
+</div>
+
 <div id="ref-cbc_education">
 
 CBC. 2016. “Higher Education Still Worth the Money, New Research
@@ -1001,6 +1009,13 @@ Dollar Earned by Men in 2018.” *CBC*, October.
 <div id="ref-R_docopt">
 
 de Jonge, Edwin. 2018. <https://CRAN.R-project.org/package=docopt>.
+
+</div>
+
+<div id="ref-pyarrow">
+
+Developers, Apache Arrow. 2019. *Pyarrow: Python Library for Apache
+Arrow*. <https://pypi.org/project/pyarrow/>.
 
 </div>
 
@@ -1055,16 +1070,23 @@ Combining Data*. <https://CRAN.R-project.org/package=docopt>.
 
 </div>
 
+<div id="ref-testthat">
+
+———. 2019b. *Testthat: Unit Testing for R*.
+<https://CRAN.R-project.org/package=testthat>.
+
+</div>
+
 <div id="ref-tidyverse">
 
-———. 2019b. *Tidyverse: Easily Install and Load the ’Tidyverse’*.
+———. 2019c. *Tidyverse: Easily Install and Load the ’Tidyverse’*.
 <https://CRAN.R-project.org/package=tidyverse>.
 
 </div>
 
 <div id="ref-R_feather">
 
-———. 2019c. <https://CRAN.R-project.org/package=feather>.
+———. 2019d. <https://CRAN.R-project.org/package=feather>.
 
 </div>
 
