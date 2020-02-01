@@ -113,8 +113,5 @@ def test_fun():
   assert temp_df.shape[0] == 8, "Number of rows not expected"
 
 if __name__ == "__main__":
-  test_fun()
   main(opt["--in_file"], opt["--out_dir"], opt["--istrain"])    
-
-
-    
+  test_fun()
