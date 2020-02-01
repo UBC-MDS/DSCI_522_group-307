@@ -15,7 +15,6 @@ data/clean_test_data.feather : scripts/2_wrangle_data.py data/adult_test_data.cs
 results/num_feat_summary.csv results/cat_feat_summary.csv results/dist_num_feat.png : scripts/3_eda.R data/clean_train_data.feather
 	Rscript scripts/3_eda.R --train=data/clean_train_data.feather --out_dir=results
 
-
 results/grid_search_summary.csv results/neg_features.csv results/pos_features.csv results/sig_features.csv : scripts/4_ml_analysis.py data/clean_train_data.feather data/clean_validation_data.feather data/clean_test_data.feather
 	python scripts/4_ml_analysis.py --train=data/clean_train_data.feather --valid=data/clean_validation_data.feather --test=data/clean_test_data.feather --outputdir=results
 
@@ -26,4 +25,3 @@ clean:
 	rm -rf data/*
 	rm -rf doc/income_level_report.md
 	rm -rf results/*
-
