@@ -93,19 +93,24 @@ def test_fun():
   test_df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.test', skiprows = 1, nrows = 10)
   test_df.to_csv("data/sample_wrangle_data.csv", index = False)
   
-  in_file = "data/sample_wrangle_data.csv"
-  out_dir = "data"
+  in_file1 = "data/sample_wrangle_data.csv"
+  out_dir1 = "data"
   
   #-------------- check for train data-----------------------#
-  main(in_file, out_dir)
-  assert os.path.exists(out_dir+'/clean_train_data.csv'), "Clean train data not found in location"
-  assert os.path.exists(out_dir+'/clean_train_data.feather'), "Clean train data not found in location"
+  main(in_file1, out_dir1)
+  assert os.path.exists(out_dir1+'/clean_train_data.csv'), "Clean train data not found in location"
   
-  #-------------- check for test data-----------------------#
-  main(in_file, out_dir, 3)
-  assert os.path.exists(out_dir+'/clean_test_data.csv'), "Clean test data not found in location"
-  assert os.path.exists(out_dir+'/clean_test_data.feather'), "Clean test data not found in location"
+  temp_df = pd.read_csv(out_dir1+'/clean_train_data.csv')
 
+  assert temp_df.shape[0] == 24129, "Number of columns not expected"
+
+  #-------------- check for test data-----------------------#
+  main(in_file1, out_dir1, 3)
+  assert os.path.exists(out_dir1+'/clean_test_data.csv'), "Clean test data not found in location"
+
+  temp_df = pd.read_csv(out_dir1+'/clean_test_data.csv')
+
+  assert temp_df.shape[0] == 8, "Number of rows not expected"
 
 if __name__ == "__main__":
   test_fun()
