@@ -10,7 +10,9 @@ Options:
 --outputdir=<outputdir>     a directory path to write the output tables (excluding filename)
 """
 
-#imports
+#============++================
+# IMPORTS
+#==============================
 import numpy as np 
 import pandas as pd 
 
@@ -24,25 +26,32 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 
-
-opt = docopt(__doc__)
-
 def main(train, valid, test, odir):
     """
-    DOCSTRING REQUIRED
+    Performs machine learning of data set including
+    different model comparison (model accuracy)
+    feature evaluation (logistic regression and adaboost)
 
-    PARAMETERS
+    Parameters
     ----------
+    train -     file path to train data (string)
+    valid -     file path to validation data (string)
+    test -      file path to test data (string)
+    odir -      output directory (string)
 
     """
+    #==============================
+    #CHECK FOR CORRECT USER INPUTS
+    #==============================
 
-    if odir.endswith('.csv') == True:
-        print('do not provide a filename.csv in the output directory')
-        return
+    assert odir.endswith('.csv') == False, 'Provide an output directory'
+    assert train.endswith('.feather'), 'Feather file required'
+    assert valid.endswith('.feather'), 'Feather file is required'
+    assert test.endswith('.feather'), 'Feather file is required'
 
-
+    #==============================
     #IMPORT & SPLIT DATA
-    #--------------------------------------------
+    #==============================
 
     train_data = pd.read_feather(train)
     valid_data = pd.read_feather(valid)
@@ -51,13 +60,18 @@ def main(train, valid, test, odir):
     X_train, y_train = split_data(train_data)
     X_valid, y_valid = split_data(valid_data)
     X_test, y_test = split_data(test_data)
+    y_test = y_test.str.slice(stop = -1)
 
     X_trainvalid = pd.concat([X_train, X_valid], ignore_index = True)
     y_trainvalid = pd.concat([y_train, y_valid], ignore_index = True)
 
+    #Check to see that each observation has a target
+    assert X_trainvalid.shape[0] == y_trainvalid.shape[0], 'Number of targets is different than number of observations'
+    assert X_test.shape[0] == y_test.shape[0], 'Number of targets is different than number of observations'
 
+    #==============================
     #PREPROCESSING
-    #--------------------------------------------
+    #==============================
     numerical = ['age','education_num','hours_per_week']
     categorical = ['workclass','marital_status','occupation',
                     'relationship','race','sex','native_country']
@@ -67,8 +81,9 @@ def main(train, valid, test, odir):
                             ('num', StandardScaler(), numerical),
                             ('cat', OneHotEncoder(), categorical)])
 
+    #==============================
     #CLASSIFIER & HYPERPARAMETER SELECTION
-    #--------------------------------------------
+    #==============================
 
     model_param = {                   
                 'logistic_regression':  [LogisticRegression(), 
@@ -87,9 +102,12 @@ def main(train, valid, test, odir):
                                         'Ada Boost']
                 }
 
-
+    #==============================
     #HYPERPARAMETER OPTIMIZATION
-    #--------------------------------------------
+    #==============================
+
+    #Check to make sure features in train data same as numeric and cat defined
+    assert len(numerical) + len(categorical) == X_trainvalid.shape[1], 'Number of features in train / validation data does not match'
 
     results = []
     for model_name, model in model_param.items():
@@ -110,14 +128,17 @@ def main(train, valid, test, odir):
 
     gridsearch_results = pd.concat([i for i in results], ignore_index = True)
 
-
-    #OUTPUT SUMMARY
-    #--------------------------------------------
+    #==============================
+    #MODEL PERFORMANCE OUTPUT (GRIDSEARCH)
+    #==============================
 
     gridsearch_summary = gridsearch_results.loc[:,['classifier', 'validation_score', 'mean_test_score', 'mean_fit_time', 'mean_score_time','params', 'classifier_temp']]
     gridsearch_summary.columns = ['Classifier', 'Validation Score', 'Mean Test Score', 'Mean Fit Time', 'Mean Score Time', 'Optimum Hyperparameters', 'classifier_temp']
     gridsearch_summary = gridsearch_summary.sort_values(by = ['Validation Score'], ascending = False).reset_index(drop = True)  #OUTPUT
 
+    #==============================
+    #MODELS FOR FEATURE IMPORTANCE
+    #==============================
 
     #Ada Boost
     #--------------------------------------------
@@ -148,7 +169,9 @@ def main(train, valid, test, odir):
     trainvalid_score_lr = grid_search_lr.score(X_trainvalid, y_trainvalid)
     test_score_lr = grid_search_lr.score(X_test, y_test)
 
-
+    #==============================
+    #FEATURE IMPORTANCE OUTPUT
+    #==============================
     preprocessor.fit_transform(X_trainvalid)
     transformed_feature_names = (numerical +list(preprocessor.named_transformers_['cat'].get_feature_names(categorical)))
 
@@ -177,11 +200,22 @@ def main(train, valid, test, odir):
 
     return
 
-
 def split_data(data):
+    """
+    A function drops data and splits the target
+
+    Parameters
+    ----------
+    data -  a pandas dataframe, including target to be dropped
+
+    Return
+    -------
+    A tuple of the observations, target
+    """
     features = data.drop(columns = ['target','education', 'fnlwgt', 'capital_gain', 'capital_loss'])
     target = data['target']
     return features, target
 
+opt = docopt(__doc__)
 if __name__ == "__main__":
     main(opt['--train'], opt['--valid'], opt['--test'],opt['--outputdir'])
