@@ -19,15 +19,38 @@ __Note__
 - __Running `make clean` followed by `make all` will take up to an hour and consume all available processors__    
 - __For the purpose of this milestone submission, `make clean_light` will only remove files that do not trigger the time-consuming scripts, but will demonstrate correct use of the Makefile__   
 - __if using a Windows OS, it appears that downloading a local copy of the repo and running `make clean_light` followed by `make all`, runs all of the scripts in the pipeline (this is not the case for Linux or MacOS systems)__  
+
+__1. Using Docker__ 
+
+_these instructions rely on running the commands in a unix shell (ex terminal or Git Bash)_ 
+
+To replicate the analysis, install [Docker](https://www.docker.com/get-started). Then clone this GitHub repository and run the following command at the command line/terminal from the root directory of this project:
+
+_Note: append the command `sudo` if running a linux os_ 
+
+```
+sudo docker run --rm -v /$(pwd):/home/test/ evhend/anacondabase make -C /home/test/ clean
+sudo docker run --rm -v /$(pwd):/home/test/ evhend/anacondabase make -C /home/test/ all
+```
+
+OR, to reduce runtime for this submission:
+```
+sudo docker run --rm -v /$(pwd):/home/test/ evhend/anacondabase make -C /home/test/ clean_light
+sudo docker run --rm -v /$(pwd):/home/test/ evhend/anacondabase make -C /home/test/ all
+```
+
+__2. Without Using Docker__ 
+
 ```
 make clean
 make all
 ```
-OR, for this submission:
+OR, to reduce runtime for this submission:
 ```
 make clean_light
 make all
 ```
+
 
 ## Dependencies
 - Python 3.7.3 and Python packages:
