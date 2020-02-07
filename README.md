@@ -29,14 +29,14 @@ To replicate the analysis, install [Docker](https://www.docker.com/get-started).
 _Note: append the command `sudo` if running a linux os_ 
 
 ```
-sudo docker run --rm -v /$(pwd):/home/test/ evhend/anacondabase make -C /home/test/ clean
-sudo docker run --rm -v /$(pwd):/home/test/ evhend/anacondabase make -C /home/test/ all
+sudo docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor make -C /home/incomelevelpredictor/ clean
+sudo docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor make -C /home/incomelevelpredictor/ all
 ```
 
 OR, to reduce runtime for this submission:
 ```
-sudo docker run --rm -v /$(pwd):/home/test/ evhend/anacondabase make -C /home/test/ clean_light
-sudo docker run --rm -v /$(pwd):/home/test/ evhend/anacondabase make -C /home/test/ all
+sudo docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/anacondabase make -C /home/incomelevelpredictor/ clean_light
+sudo docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/anacondabase make -C /home/incomelevelpredictor/ all
 ```
 
 __2. Without Using Docker__ 
