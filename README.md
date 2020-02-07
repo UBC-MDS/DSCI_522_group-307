@@ -20,7 +20,7 @@ __Note__
 - __For the purpose of this milestone submission, `make clean_light` will only remove files that do not trigger the time-consuming scripts, but will demonstrate correct use of the Makefile__   
 - __if using a Windows OS, it appears that downloading a local copy of the repo and running `make clean_light` followed by `make all`, runs all of the scripts in the pipeline (this is not the case for Linux or MacOS systems)__  
 
-_1. Using Docker__ 
+__1. Using Docker__ 
 
 _these instructions rely on running the commands in a unix shell (ex terminal or Git Bash)_ 
 
