@@ -48,6 +48,7 @@ make all
     - gridExtra == 2.3
     - rlang == 0.4.4
     - rmarkdown == 2.1
+    - kableExtra == 1.1.0
     
 ### License
 
