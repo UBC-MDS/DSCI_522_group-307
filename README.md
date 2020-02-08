@@ -38,7 +38,7 @@ Alternatively, to reduce runtime for this submission:
 docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor make -C /home/incomelevelpredictor/ clean_light
 docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor make -C /home/incomelevelpredictor/ all
 ```
-_Note 2: if running **Windows** and using Git Bash, it may be necessary to instead try:_ 
+_Note 2: Although this may not work, if running **Windows** and using Git Bash, it may be necessary to instead try:_ 
 
 ```
 docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor bash -c "make -C /home/incomelevelpredictor/ clean"
