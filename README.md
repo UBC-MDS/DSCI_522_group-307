@@ -35,8 +35,8 @@ docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevel
 
 OR, to reduce runtime for this submission:
 ```
-docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/anacondabase make -C /home/incomelevelpredictor/ clean_light
-docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/anacondabase make -C /home/incomelevelpredictor/ all
+docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor make -C /home/incomelevelpredictor/ clean_light
+docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor make -C /home/incomelevelpredictor/ all
 ```
 
 __2. Without Using Docker__ 
