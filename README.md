@@ -18,15 +18,15 @@ To replicate this analysis, clone this repository, install the dependencies, and
 __Note__  
 - __Running `make clean` followed by `make all` will take up to an hour and consume all available processors__    
 - __For the purpose of this milestone submission, `make clean_light` will only remove files that do not trigger the time-consuming scripts, but will demonstrate correct use of the Makefile__   
-- __if using a Windows OS, it appears that downloading a local copy of the repo and running `make clean_light` followed by `make all`, runs all of the scripts in the pipeline (this is not the case for Linux or MacOS systems)__  
+- __If using a Windows OS, it appears that downloading a local copy of the repo and running `make clean_light` followed by `make all`, runs all of the scripts in the pipeline (this is not the case for Linux or MacOS)__  
 
 __1. Using Docker__ 
 
-_these instructions rely on running the commands in a unix shell (ex terminal or Git Bash)_ 
+_These instructions rely on running the commands in a unix shell (e.g. Terminal or Git Bash)_ 
 
 To replicate the analysis, install [Docker](https://www.docker.com/get-started). Then clone this GitHub repository and run the following command at the command line/terminal from the root directory of this project:
 
-_Note: append the command `sudo` if running a linux os_ 
+_Note: append the command `sudo` if running a Linux os_ 
 
 ```
 docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor make -C /home/incomelevelpredictor/ clean
@@ -51,6 +51,8 @@ make clean_light
 make all
 ```
 
+## Dependency diagram
+![diagram](https://raw.githubusercontent.com/UBC-MDS/DSCI_522_group-307/master/dependency_diagram.png)
 
 ## Dependencies
 - Python 3.7.3 and Python packages:
