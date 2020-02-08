@@ -26,17 +26,28 @@ _These instructions rely on running the commands in a unix shell (e.g. Terminal 
 
 To replicate the analysis, install [Docker](https://www.docker.com/get-started). Then clone this GitHub repository and run the following command at the command line/terminal from the root directory of this project:
 
-_Note: append the command `sudo` if running a Linux os_ 
+_Note 1: append the command `sudo` if running a **Linux OS**_ 
 
 ```
 docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor make -C /home/incomelevelpredictor/ clean
 docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor make -C /home/incomelevelpredictor/ all
 ```
 
-OR, to reduce runtime for this submission:
+Alternatively, to reduce runtime for this submission:
 ```
 docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor make -C /home/incomelevelpredictor/ clean_light
 docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor make -C /home/incomelevelpredictor/ all
+```
+_Note 2: if running **Windows** and using Git Bash, it may be necessary to instead try:_ 
+
+```
+docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor bash -c "make -C /home/incomelevelpredictor/ clean"
+docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor bash -c "make -C /home/incomelevelpredictor/ all"
+```
+Alternatively, to save time:
+```
+docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor bash -c "make -C /home/incomelevelpredictor/ clean_light"
+docker run --rm -v /$(pwd):/home/incomelevelpredictor/ evhend/dsci522incomelevelpredictor bash -c "make -C /home/incomelevelpredictor/ all"
 ```
 
 __2. Without Using Docker__ 
