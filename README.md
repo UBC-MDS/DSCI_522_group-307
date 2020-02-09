@@ -2,7 +2,7 @@
 A data analysis project for DSCI 522 Data Science Workflows
 
 Authors: Saurav Chowdhury, Evhen Dytyniak, and Reiko Okamoto </br>
-Date: 2020-01-24
+Date: 2020-08-24
 
 ## About
 
